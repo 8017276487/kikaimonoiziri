@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>機械もの漁り -Junk Mechanical Log-</title>
+    <style>
+        /* 徹底的な軽量化：基本は黒背景にアンバー（琥珀色/オレンジ） */
+        body {
+            background-color: #000000;
+            color: #FFA500; 
+            font-family: "MS Pゴシック", monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* 左メニュー：無骨なシステムナビ */
+        .sidebar {
+            width: 200px;
+            background-color: #050505;
+            border-right: 2px solid #333333;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .sidebar h3 {
+            color: #FFFFFF;
+            font-size: 14px;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 5px;
+        }
+        
+        /* ボタン風リンク（onclickで画面を切り替える） */
+        .menu-link {
+            color: #00FFFF; 
+            text-decoration: underline;
+            display: block;
+            margin: 15px 0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .menu-link:hover {
+            color: #FFFF00;
+        }
+
+        /* 右メイン：日記エリア */
+        .main-pane {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        /* ブログタイトル */
+        h1 {
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #888888;
+            text-align: center;
+            font-size: 11px;
+            margin-bottom: 30px;
+        }
+
+        /* ページ（最初はTOP以外を非表示にする） */
+        .page-content {
+            display: none;
+        }
+        #page-top {
+            display: block; /* TOPだけ初期表示 */
+        }
+
+        /* 記事枠：電子基板やジャンク箱をイメージ */
+        .post {
+            border: 1px solid #FFA500;
+            background-color: #020202;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 650px;
+            text-align: left;
+        }
+        .post-date {
+            color: #888888;
+            font-size: 12px;
+            border-bottom: 1px dashed #333333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .post-title {
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .post-body {
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* ランダムテキスト表示エリア */
+        .status-box {
+            background-color: #111111;
+            border: 1px inset #333333;
+            padding: 10px;
+            font-size: 12px;
+            color: #00FF00;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 【左メニュー】 -->
+    <div class="sidebar">
+        <h3>■ MENU</h3>
+        <!-- href="#"のままで、クリック時にJavaScriptを動かす設定にしました -->
+        <span class="menu-link" onclick="showPage('page-top')">◇ TOP</span>
+        <span class="menu-link" onclick="showPage('page-junk')">◇ 日記</span>
+        <span class="menu-link" onclick="showPage('page-spec')">◇ 自分の持っている電子機器リスト</span>
+        <h3>■ 記事</h3>
+        <a href="netbook.html" class="menu-link">◇ Acer Aspire One D260は今でも使えるか</a>
+
+        <br><br>
+        <p style="font-size: 10px; color: #444444;">since 2026.07.31</p>
+    </div>
+
+    <!-- 【右メインコンテンツエリア】 -->
+    <div class="main-pane">
+
+        <h1>機械もの漁り</h1>
+        <div class="subtitle">〜 家に眠っている機械ものを使い倒す 〜</div>
+
+
+        <!-- ==================== ① TOP ページ ==================== -->
+        <div id="page-top" class="page-content">
+            <div class="post">
+                <div class="post-title">📢 電脳空間へようこそ</div>
+                <div class="post-body">
+                    ここは、管理人が趣味で家で眠っていた機械ものを使い倒し、記録するブログです。<br><br>
+                    左のメニューから、使い倒したものや、自分の持っている電子機器リストのページへワープできます。
+                </div>
+            </div>
+
+            <!-- ギミック：押すと機械のステータスが変わるリンク -->
+            <div class="post">
+                <div class="post-title">🛠️ 本日のジャンク起動診断</div>
+                <div class="status-box">
+                    現在のステータス：<span id="random-text">【回路未接続】</span>
+                </div>
+                <p style="font-size: 13px; margin: 0;">
+                    <a href="#" onclick="checkJunk(); return false;" style="color: #00FFFF;">[ ジャンクの電源を入れてみる ]</a>
+                </p>
+            </div>
+        </div>
+
+
+        <!-- ==================== ② JUNK LOG (日記) ページ ==================== -->
+        <div id="page-junk" class="page-content">
+            <!-- 記事1 -->
+            <div class="post">
+                <div class="post-date">LOG_ID: 20260731_01 // STATUS: WORKING</div>
+                <div class="post-title">■ 200円のお買い得メモリ</div>
+                <div class="post-body">
+                    x/x/x 秋葉原のジャンク通りの店名不明の店で200円で購入した2GBメモリ。<br>
+                どうやらサムスン製のものっぽい(撮り忘れました)<br><br>
+                家に帰って来たあと、Acer Aspire One D260についている1GBメモリから交換。<br>
+              なんと認識するし、フリーズしたりとかもない
+            </div>
+        </div>
+            
+            <!-- 記事を増やしたい時は、ここに次の <div class="post">...</div> を足していけばOKです -->
+        </div>
+
+
+        <!-- ==================== ③ SPEC (機材) ページ ==================== -->
+        <div id="page-spec" class="page-content">
+            <div class="post">
+                <div class="post-title">🔧 持っている端末</div>
+                <div class="post-body">
+                    自分の持っている電子機器リスト。<br><br>
+                    ■ チャレンジパッド2<br>
+                    ■ ポケトークW(Android Go 8.1のGSIやこうとして文鎮化した)<br>
+                    ■ iPhone 6(使いみちを模索中)<br>
+                    ■ Acer Aspire One D260(メモリを2GBに交換し、ぎり使える)<br>
+                    ■ Dynabook T75/BWS(Linux mint XfceにOSを入れ替え、快適に使えている)
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 【超軽量JavaScript】 -->
+    <script>
+    // ① ページを瞬時に切り替えるための仕組み（一切重くなりません）
+    function showPage(pageId) {
+        // 一旦すべてのページを非表示にする
+        var pages = document.getElementsByClassName('page-content');
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].style.display = 'none';
+        }
+        // クリックされたページだけを表示する
+        document.getElementById(pageId).style.display = 'block';
+    }
+
+    // ② ランダムテキスト機能
+    var textList = [
+        "通電確認。ジーという異音と共に起動した（危険）",
+        "エラーコード 404：コンデンサが液漏れしています",
+        "奇跡的に動作！しかし10分後に謎の煙が発生",
+        "完全に沈黙。どうやらただの文鎮のようだ",
+        "仕様不明の謎のファームウェアが立ち上がった……"
+    ];
+    function checkJunk() {
+        var randomIndex = Math.floor(Math.random() * textList.length);
+        document.getElementById("random-text").innerHTML = textList[randomIndex];
+    }
+    </script>
+
+</body>
+</html>
+
