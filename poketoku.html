@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポケトークをandroidスマホ化した件 - 機械もの漁り</title>
+    <style>
+        /* 軽さを最優先し、メインサイトと完全に統一した黒ベースのスタイル */
+        body {
+            background-color: #000000;
+            color: #FFA500; /* アンバー */
+            font-family: "MS Pゴシック", monospace;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* 記事の枠 */
+        .post {
+            border: 1px solid #FFA500;
+            background-color: #020202;
+            padding: 25px;
+            margin: 0 auto;
+            max-width: 650px;
+            text-align: left;
+        }
+        .post-date {
+            color: #888888;
+            font-size: 12px;
+            border-bottom: 1px dashed #333333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .post-title {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .post-body {
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* 戻るリンク */
+        .back-link {
+            color: #00FFFF;
+            text-decoration: underline;
+            font-size: 13px;
+            display: inline-block;
+            margin-top: 30px;
+        }
+        .back-link:hover {
+            color: #FFFF00;
+        }
+ /* サイト全体の文字サイズや余白 */
+  body {
+    font-size: 16px;      /* スマホで見やすい文字の大きさ */
+    line-height: 1.6;     /* 行と行の間隔をあけて読みやすく */
+    padding: 15px;        /* 画面の端に少し余白を作る */
+    margin: 0;
+  }
+
+  /* 画像が画面からはみ出さないようにする設定 */
+  img {
+    max-width: 100%;      /* 画面（または親要素）より大きくならない */
+    height: auto;         /* 縦横比を崩さない */
+    display: block;       /* レイアウトを綺麗に整える */
+    margin: 10px 0;       /* 上下に少し隙間をあける */
+  }
+    </style>
+</head>
+<body>
+
+    <!-- 記事エリア -->
+    <div class="post">
+        <div class="post-date">CATEGORY: COLUMN // RETRO_PC_LOG</div>
+        <h1 class="post-title">■ ポケトークWをAndroidスマホ化した話</h1>
+        
+        <div class="post-body">
+            最近ポケトークWを使っていなくて、押し入れの中に眠っていた。<br>Android8.1が搭載されていると箱に書いてあったので、androidスマホ化できると思った。それで、1時間ぐらい試行錯誤していたら成功したので方法を紹介する<br>グローバルSIMが切れていて、本体から延長を押す事で外部サイトにアクセスします。だから、グローバルSIMの有効期限が切れていないと、この方法ではできません(たぶん)<br><br>
+            <h1>必要なもの</h1>
+<p>グローバル通信切れのポケトークW<br>adbコマンド構築済みのPC<br>USB(type-c)転送ケーブル<br>
+<h1>やり方</h1>
+<img src="DSC03274.png" width="300" alt="ポケトークの設定"><br><br>まずポケトークの設定から「通信プラン」を押します。<br><br><img src="DSC03275.png" width="300" alt="本体から延長"><br><br>「本体から延長」を押します。<br><br><img src="DSC03276.png" width="300" alt="共有"><br><br>このような画面が出てきたら、黒い文字を長押しし、「共有」を押します。<br><br><img src="DSC03277.png" width="300" alt="他アプリへの移動"><br><br>メッセージを押します。<br><br><img src="DSC03278.png" width="300" alt="メッセージ送信"><br><br>矢印ところに適当な電話番号を入力し下のメッセージ欄に適当な言葉を入力して送信します。<br><br>
+<img src="DSC03279.png" width="300" alt="電話アプリへの移動"><br><br>受話器のアイコンのボタンを押します。<br><br><img src="DSC03280.png" width="300" alt="電話番号の入力画面"><br><br>メッセージの送信のときに入力した電話番号が表示されるので番号横のボタンで消し、<h1>*#*#4636#*#*</h1>と入力します。<br><br><img src="DSC03281.png" width="300" alt="使用統計情報を押す"><br><br>「使用統計情報」を押します。<br><br><img src="DSC03283.png" width="300" alt="戻る"><br><br>左上の戻るボタンを押します。<br><br><img src="DSC03284.jpg" width="300" alt="android設定"><br><br>android設定が出てきます。<br><br><img src="DSC03285.png" width="300" alt="ビルド番号"><br><br>一番下の項目にあるシステム>システムの一番下の項目にある端末情報を押し、ビルド番号を連打します。(デベロッパーになるまであと3ステップですと出てきたあとも連打し、これでデベロッパーになりましたと出てくればOK)<br><br>左上の戻るボタンで、端末情報に戻り開発者向けオプションを押します。<br><br><img src="DSC03286.jpg" width="300" alt="開発者向けオプション"><br><br><h1>USBデバッグ</h1>と<h1>スリープモードにしない</h1>をオンにします。<br>USB(type-c)ケーブルでポケトークWとPCを接続します。<br>コマンドプロンプトで「adb devices」と入力します。<br>ポケトークWで「このパソコンからのUSBデバッグを常に許可する」にチェックを入れてOKを押します。<br>成功すれば「device」が出てきます。(deviceが出て来ない場合、adb devicesを入力するところからやり直し)<br>「device」が表示されている場合、「adb shell settings put secure install_non_market_apps 1」と入力します<br>何も表示されずに再びコマンドが打てる状態になったら、<a href="https://apkpure.com/jp/nova-launcher/com.teslacoilsw.launcher">https://apkpure.com/jp/nova-launcher/com.teslacoilsw.launcher</a>からNova LauncherのAPKファイルをダウンロードします。コマンドプロンプトで「adb install 」と入力し、ダウンロードした「Nova Launcher」のAPKファイルをコマンドプロンプトにドラッグ&ドロップします。(adb install '/home/localline/ダウンロー ド/Nova Launcher_81038 (8.4.6)_APKPure.apk'のようにadb install +Nova LauncherのAPKファイルのパスが表示されたらOK)その後、Enterキーを押します。次のコマンドが打てる状態になるまで待ち、「Success」が表示されたら、電源ボタンを長押し、再起動を押して再起動します<br><br><img src="DSC03288.png" width="300" alt="ホームアプリの選択"><br><br>Nova Launcherを押して常時を押します<br>その後、画面の指示に従いホーム画面のデザインの設定をします<br><br><img src="DSC03289.jpg" width="300" alt="androidスマホのような画面"><br><br>このようなandroidスマホっぽい画面が出たらOKです
+        </div>
+    </div>
+
+    <!-- 元のメインサイト（index.html）へ戻るリンク -->
+    <!-- target="_top" をつけることで、フレーム（左右分割）を維持したまま、または解除して戻る設定にできます -->
+    <a href="index.html" class="back-link">[ メインサイトへ戻る ]</a>
+
+</body>
+</html>
+
