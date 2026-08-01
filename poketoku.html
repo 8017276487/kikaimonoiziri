@@ -69,24 +69,45 @@
     margin: 10px 0;       /* 上下に少し隙間をあける */
   }
 
-        body.light-theme {
-  background-color: #ffffff; /* 背景を白に */
-  color: #222222;            /* 文字を濃いグレーに */
+        /* 💡 </style> の直前にある light-theme のコードをこれに差し替えてください */
+body.light-theme {
+  background-color: #ffffff !important; /* 背景を強制的に白に */
+  color: #222222 !important;            /* 全体の文字を強制的に濃いグレーに */
 }
+
+/* ライトモード時の、すべての段落やテキストの色を保証する */
+body.light-theme p, 
+body.light-theme li, 
+body.light-theme span, 
+body.light-theme div {
+  color: #222222 !important;
+}
+
+/* 左メニューの設定 */
 body.light-theme nav {
-  border-right: 1px solid #ddd; /* 区切り線も明るく */
+  border-right: 1px solid #ddd !important;
 }
-body.light-theme nav h3, body.light-theme h1 {
-  color: #cc6600;            /* 見出しを少し落ち着いたオレンジに */
-  border-color: #cc6600;
+
+/* 見出し（タイトル）の設定：背景が白でもパッと目立つ濃いオレンジに */
+body.light-theme nav h3, 
+body.light-theme h1, 
+body.light-theme h2, 
+body.light-theme h3 {
+  color: #d35400 !important; 
+  border-color: #d35400 !important;
 }
-body.light-theme nav a, body.light-theme .box a {
-  color: #0066cc;            /* リンクを暗めの青にして読みやすく */
+
+/* リンク（青色にして分かりやすく） */
+body.light-theme a {
+  color: #0066cc !important;
 }
+
+/* ボックス（枠線）の中身も明るい背景と濃い文字にする */
 body.light-theme .box {
-  background-color: #f5f5f5; /* ボックスの背景を薄いグレーに */
-  border-color: #cc6600;
+  background-color: #f9f9f9 !important;
+  border-color: #d35400 !important;
 }
+
     </style>
 </head>
 <body>
