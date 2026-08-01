@@ -68,6 +68,25 @@
     display: block;       /* レイアウトを綺麗に整える */
     margin: 10px 0;       /* 上下に少し隙間をあける */
   }
+
+        body.light-theme {
+  background-color: #ffffff; /* 背景を白に */
+  color: #222222;            /* 文字を濃いグレーに */
+}
+body.light-theme nav {
+  border-right: 1px solid #ddd; /* 区切り線も明るく */
+}
+body.light-theme nav h3, body.light-theme h1 {
+  color: #cc6600;            /* 見出しを少し落ち着いたオレンジに */
+  border-color: #cc6600;
+}
+body.light-theme nav a, body.light-theme .box a {
+  color: #0066cc;            /* リンクを暗めの青にして読みやすく */
+}
+body.light-theme .box {
+  background-color: #f5f5f5; /* ボックスの背景を薄いグレーに */
+  border-color: #cc6600;
+}
     </style>
 </head>
 <body>
@@ -76,6 +95,9 @@
     <div class="post">
         <div class="post-date">CATEGORY: COLUMN // RETRO_PC_LOG</div>
         <h1 class="post-title">■ ポケトークWをAndroidスマホ化した件</h1>
+        <!-- 💡 本文の中の好きな場所に貼り付ける -->
+<button id="theme-btn" style="padding: 5px 10px; cursor: pointer; margin-bottom: 15px;">ライトモードに切り替え</button>
+
         
         <div class="post-body">
             最近ポケトークWを使っていなくて、押し入れの中に眠っていた。<br>Android8.1が搭載されていると箱に書いてあったので、androidスマホ化できると思った。それで、1時間ぐらい試行錯誤していたら成功したので方法を紹介する<br>グローバルSIMが切れていて、本体から延長を押す事で外部サイトにアクセスします。だから、グローバルSIMの有効期限が切れていないと、この方法ではできません(たぶん)<br><br>
@@ -92,5 +114,20 @@
     <a href="index.html" class="back-link">[ メインサイトへ戻る ]</a>
 
 </body>
+    <script>
+  const btn = document.getElementById('theme-btn');
+  
+  btn.addEventListener('click', () => {
+    // bodyタグに「light-theme」というクラスをつけ外しする
+    document.body.classList.toggle('light-theme');
+    
+    // ボタンの文字を現在のモードに合わせて変える
+    if (document.body.classList.contains('light-theme')) {
+      btn.innerText = 'ダークモードに切り替え';
+    } else {
+      btn.innerText = 'ライトモードに切り替え';
+    }
+  });
+</script>
 </html>
 
